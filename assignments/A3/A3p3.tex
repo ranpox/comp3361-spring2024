@@ -239,11 +239,8 @@ Given a small document corpus D consisting of two sentences: \{``i hug pugs", ``
 
 Assume the initial vocabulary includes individual characters and spaces as separate tokens. The BPE algorithm should merge the most frequent adjacent pairs of tokens iteratively until the vocabulary size reaches N=15.
 
-
-\begin{itemize}
-    \item What is the final list of the desired vocabulary tokens?
-    \item What is the final list of document tokens after reaching the desired vocabulary size?
-\end{itemize}
+\paragraph{Question 3.3a} What is the final list of the desired vocabulary tokens?
+\paragraph{Question 3.3b} What is the final list of document tokens after reaching the desired vocabulary size?
 
 \newpage
 \paragraph{Question 3.4} Let $\mathbf{Q} \in \mathbb{R}^{N \times d}$ denote a set of $N$ query vectors, which attend to $M$ key and value vectors, denoted by matrices $\mathbf{K} \in \mathbb{R}^{M \times d}$ and $\mathbf{V} \in \mathbb{R}^{M \times c}$ respectively. For a query vector at position $n$, the softmax attention function computes the following quantity:
