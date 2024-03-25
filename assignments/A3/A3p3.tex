@@ -1,0 +1,258 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{listings}
+\usepackage{lipsum}
+\usepackage{natbib}
+\usepackage{newpxtext}
+\usepackage{booktabs} 
+\linespread{1.05}  
+
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+\usepackage{cleveref}
+\usepackage{geometry} % Required for adjusting page dimensions and margins
+
+\geometry{
+	paper=a4paper, % Paper size, change to letterpaper for US letter size
+	top=2.5cm, % Top margin
+	bottom=3cm, % Bottom margin
+	left=2.5cm, % Left margin
+	right=2.5cm, % Right margin
+	headheight=14pt, % Header height
+	footskip=1.5cm, % Space from the bottom margin to the baseline of the footer
+	headsep=1.2cm, % Space from the top margin to the baseline of the header
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+\usepackage[skip=10pt plus1pt, indent=20pt]{parskip}
+
+
+\begin{document}
+\title{COMP3361 Assignment 3 Submission}
+\author{Name: \\ University Number:}
+\date{Spring 2024}
+\maketitle
+
+\section{Written Problems (50\%)}
+
+\subsection{Multi-Choice (20\%)}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}cc@{}}
+\toprule
+Question Number & Selected Option \\ \midrule
+1               &              \\
+2               &              \\
+3               &              \\
+4               &              \\
+5               &              \\
+6               &              \\
+7               &              \\
+8               &              \\
+9               &              \\
+8               &              \\
+10              &              \\
+\bottomrule
+\end{tabular}
+\caption{Selected Options for Multi-Choice Questions}
+\label{tab:my_label}
+\end{table}
+
+\begin{enumerate}
+    \item Select the answer that includes all the skip-gram (word, context) training pairs for the sentence the cat ran away, for a window size k = 2 from target.
+    \begin{itemize}
+        \item[A)] [the, cat], [the, ran], [cat, ran], [cat, away], [ran, away]
+        \item[B)]  [the], [cat], [ran], [away]
+        \item[C)] [the, cat], [the, ran], [cat, the], [cat, ran], [cat, away], [ran, the], [ran, cat], [ran, away], [away, cat], [away, ran]
+        \item[D)] [the, ran], [ran, cat], [cat, away]
+        \item[E)] [the, cat ran], [cat, the], [cat, ran away], [ran, the cat], [ran, away], [away, cat ran]
+    \end{itemize}
+
+    \item What if gradients become too large or small?
+    \begin{itemize}
+        \item[A)] If too large, the model will become difficult to converge 
+        \item[B)] If too small, the model can’t capture long-term dependencies 
+        \item[C)] If too small, the model may capture a wrong recent dependency 
+        \item[D)] All of the above
+    \end{itemize}
+
+    \item Which of the following methods do not involve updating the model parameters? Select all that apply.
+    \begin{itemize}
+        \item[A)] Fine-tuning
+        \item[B)] Transfer learning
+        \item[C)] In-context learning
+        \item[D)] Prompting
+    \end{itemize}
+
+    \item What range of values can cross entropy loss take?
+    \begin{itemize}
+        \item[A)] 0 to 1
+        \item[B)] 0 to $\infty$
+        \item[C)] -1 to 1
+        \item[D)] $-\infty$ to 0
+    \end{itemize}
+    
+    \item Can we use bidirectional RNNs in the following tasks? (1) text classification, (2) code generation, (3) text generation
+    \begin{itemize}
+        \item[A)] Yes, Yes, Yes 
+        \item[B)] Yes, No, No 
+        \item[C)] Yes, Yes, No 
+        \item[D)] No, Yes, No
+    \end{itemize}
+
+
+    \item Select the models that are capable of generating dynamic word embeddings, which can change depending on the surroundings of a word in a sentence.
+    \begin{itemize}
+        \item[A)] Bag of Words (BoW)
+        \item[B)] Word2Vec 
+        \item[C)] GloVe
+        \item[D)] T5
+    \end{itemize}
+
+
+    \item What makes Span Corruption a unique pretraining objective compared to traditional MLM?
+    \begin{itemize}
+        \item[A)] It involves masking and predicting individual tokens rather than spans of tokens.
+        \item[B)] It only uses punctuation marks as indicators for span boundaries.
+        \item[C)] It masks contiguous spans of text and trains the model to predict the masked spans, encouraging understanding of longer context.
+        \item[D)] It requires the model to correct grammatical errors within the span.
+    \end{itemize}
+
+    \item In the transformer model architecture, positional encodings are added to the input embeddings to provide the model with information about the position of tokens in the sequence. Given a sequence length of \(L\) and a model dimension of \(D\), which of the following PyTorch code snippets correctly implements the calculation of sinusoidal positional encodings?
+
+    \begin{itemize}
+\item[A)] 
+\begin{lstlisting}[language=Python]
+def positional_encoding(L, D):
+    position = torch.arange(L).unsqueeze(1)
+    div_term = torch.exp(torch.arange(0, D, 2) * -(np.log(10000.0) / D))
+    pe = torch.zeros(L, D)
+    pe[:, 0::2] = torch.sin(position * div_term)
+    pe[:, 1::2] = torch.cos(position * div_term)
+    return pe
+\end{lstlisting}
+
+\item[B)] 
+\begin{lstlisting}[language=Python]
+def positional_encoding(L, D):
+    position = torch.arange(L).unsqueeze(1)
+    div_term = torch.exp(torch.arange(0, D, 2) * -(np.log(10000.0) / D))
+    pe = torch.zeros(L, D)
+    pe[:, 0::2] = torch.sin(position / div_term)
+    pe[:, 1::2] = torch.cos(position / div_term)
+    return pe
+\end{lstlisting}
+
+
+
+\item[C)] 
+\begin{lstlisting}[language=Python]
+def positional_encoding(L, D):
+    position = torch.arange(L, dtype=torch.float).unsqueeze(1)
+    div_term = 1 / (10000 ** (2 * torch.arange(D // 2) / D))
+    pe = torch.zeros(L, D)
+    pe[:, 0::2] = torch.sin(position * div_term)
+    pe[:, 1::2] = torch.cos(position * div_term)
+    return pe
+\end{lstlisting}
+
+
+
+\item[D)] 
+\begin{lstlisting}[language=Python]
+def positional_encoding(L, D):
+    position = torch.arange(L, dtype=torch.float).unsqueeze(1)
+    div_term = torch.exp(torch.arange(0, D, 2) * -(np.log(10000.0) / L))
+    pe = torch.zeros(L, D)
+    pe[:, 0::2] = torch.sin(position * div_term)
+    pe[:, 1::2] = torch.cos(position / div_term)
+    return pe
+\end{lstlisting}
+        
+\end{itemize}
+
+
+
+\item In instruction tuning, what is the primary benefit of using natural language instructions for model fine-tuning?
+    \begin{itemize}
+        \item[A)] Reduces the need for labeled data in supervised learning tasks.
+        \item[B)] Enables the model to perform zero-shot or few-shot learning on tasks it was not explicitly trained for.
+        \item[C)] Significantly decreases the computational resources needed for training large models.
+        \item[D)] Allows the model to improve its performance on specific tasks without fine-tuning.
+    \end{itemize}
+
+
+\item How does Low-Rank Adaptation (LoRA) efficiently fine-tune large pre-trained models for specific tasks?
+    \begin{itemize}
+        \item[A)] By freezing the original parameters and training a small set of new parameters introduced as adapters at certain layers, significantly reducing computational needs.
+        \item[B)] By applying low-rank matrices to adjust the attention weights, enabling task-specific tuning without extensively retraining the original parameters.
+        \item[C)] By pruning less important neurons based on initial assessments, simplifying the model for specific tasks with minimal performance impact.
+        \item[D)] By adding task-specific tokens to the model’s vocabulary and fine-tuning their embeddings only, leveraging the existing model for seamless integration.
+    \end{itemize}
+
+
+
+\end{enumerate}
+
+\newpage
+\subsection{Short Answer (30\%)}
+\paragraph{Question 3.1:} A trigram language model is also often referred to as a second-order Markov language model. It has the following form:
+
+$$
+  P\left(X_{1}=x_{1}, \ldots, X_{n}=x_{n}\right)=\prod_{i=1}^{n} P\left(X_{i}=x_{i} \mid X_{i-2}=x_{i-2}, X_{i-1}=x_{i-1}\right)
+$$
+
+\paragraph{Question 3.1a:} Could you briefly explain the advantages and disadvantages of a high-order Markov language model compared to the second-order one?
+
+\paragraph{Question 3.1b:} Could you give some examples in English where English grammar suggests that the second-order Markov assumption is clearly violated?
+
+
+\newpage
+\paragraph{Question 3.2}
+
+We'd like to define a language model with \( V = \{\text{the, a, dog}\} \), and \( p(x_1 \ldots x_n) = \gamma \times 0.5^n \) for any \( x_1 \ldots x_n \), such that \( x_i \in V \) for \( i = 1 \ldots (n - 1) \), and \( x_n = \text{STOP} \), where \( \gamma \) is some expression (which may be a function of \( n \)).
+
+Which of the following definitions for \( \gamma \) give a valid language model? Please choose the answer and prove it.
+
+(Hint: recall that \( \sum_{n=1}^{\infty} 0.5^n = 1 \))
+
+\begin{enumerate}
+    \item \( \gamma = 3^{n-1} \)
+    \item \( \gamma = 3^n \)
+    \item \( \gamma = 1 \)
+    \item \( \gamma = \frac{1}{3^n} \)
+    \item \( \gamma = \frac{1}{3^{n-1}} \)
+\end{enumerate}
+
+
+
+\newpage
+\paragraph{Question 3.3}
+Given a small document corpus D consisting of two sentences: \{``i hug pugs", ``hugging pugs is fun"\} and a desired vocabulary size of N=15, apply the Byte Pair Encoding (BPE) algorithm to tokenize the documents.
+
+Assume the initial vocabulary includes individual characters and spaces as separate tokens. The BPE algorithm should merge the most frequent adjacent pairs of tokens iteratively until the vocabulary size reaches N=15.
+
+
+\begin{itemize}
+    \item What is the final list of the desired vocabulary tokens?
+    \item What is the final list of document tokens after reaching the desired vocabulary size?
+\end{itemize}
+
+\newpage
+\paragraph{Question 3.4} Let $\mathbf{Q} \in \mathbb{R}^{N \times d}$ denote a set of $N$ query vectors, which attend to $M$ key and value vectors, denoted by matrices $\mathbf{K} \in \mathbb{R}^{M \times d}$ and $\mathbf{V} \in \mathbb{R}^{M \times c}$ respectively. For a query vector at position $n$, the softmax attention function computes the following quantity:
+
+$$
+  \operatorname{Attn}\left(\mathbf{q}_{n}, \mathbf{K}, \mathbf{V}\right)=\sum_{m=1}^{M} \frac{\exp \left(\mathbf{q}_{n}^{\top} \mathbf{k}_{m}\right)}{\sum_{m^{\prime}=1}^{M} \exp \left(\mathbf{q}_{n}^{\top} \mathbf{k}_{m^{\prime}}\right)} \mathbf{v}_{m}^{\top}:=\mathbf{V}^{\top} \operatorname{softmax}\left(\mathbf{K} \mathbf{q}_{n}^{\top}\right)
+$$
+
+which is an average of the set of value vectors $\mathbf{V}$ weighted by the normalized similarity between different queries and keys.
+
+Please briefly explain what is the time and space complexity for the attention computation from query $\mathbf{Q}$ to $\mathbf{K}$, $\mathbf{V}$, using the big $O$ notation.
+\end{document}
